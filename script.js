@@ -42,3 +42,9 @@ const computerInput = function () {
     return computerInput();
   }
 };
+
+const playerInput = function (input) {
+  if (!player1.getTile().includes(input) && !comp.getTile().includes(input)) {
+    return player1.selectTile(input);
+  }
+};
