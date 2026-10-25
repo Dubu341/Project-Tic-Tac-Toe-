@@ -42,19 +42,28 @@ const computerWon = function () {
   }
 };
 
+const gameEnd = function () {
+  if (comp.checkWinner() === true || player1.checkWinner() === true) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 const computerInput = function () {
   const randomNumber = Math.floor(Math.random() * 9) + 1;
   if (
     !player1.getTile().includes(randomNumber) &&
     !comp.getTile().includes(randomNumber) &&
-    comp.checkWinner() === false &&
-    player1.checkWinner() === false
+    gameEnd() === false
   ) {
     return (
       comp.selectTile(randomNumber),
       console.log(comp.getTile()),
       computerWon()
     );
+  } else if (gameEnd() === true) {
+    console.log("game ended");
   } else {
     return computerInput(); //loops infinite till it gives an error
   }
@@ -64,15 +73,16 @@ const playerInput = function (input) {
   if (
     !player1.getTile().includes(input) &&
     !comp.getTile().includes(input) &&
-    comp.checkWinner() === false &&
-    player1.checkWinner() === false
+    gameEnd() === false
   ) {
     return (
       player1.selectTile(input),
       console.log(player1.getTile()),
       playerWon()
     );
+  } else if (gameEnd() === true) {
+    console.log("game ended");
   } else {
-    return console.log("Tile already taken or game over");
+    return console.log("Tile already taken");
   }
 };
