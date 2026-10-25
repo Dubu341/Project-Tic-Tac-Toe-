@@ -25,6 +25,9 @@ const ticTacToe = function () {
         return combination.every((index) => tiles.includes(index));
       });
     },
+    resetState() {
+      return (tiles.length = 0);
+    },
   };
 };
 
@@ -50,6 +53,10 @@ const gameEnd = function () {
   }
 };
 
+const gameReset = function () {
+  return (player1.resetState(), comp.resetState());
+};
+
 const computerInput = function () {
   const randomNumber = Math.floor(Math.random() * 9) + 1;
   if (
@@ -65,7 +72,7 @@ const computerInput = function () {
   } else if (gameEnd() === true) {
     console.log("game ended");
   } else {
-    return computerInput(); //loops infinite till it gives an error
+    return computerInput();
   }
 };
 
