@@ -79,7 +79,13 @@ const gameEnd = function () {
 };
 
 const gameReset = function () {
-  return (player.resetState(), comp.resetState(), (gameBoard.length = 0));
+  return (
+    player.resetState(),
+    comp.resetState(),
+    (gameBoard.length = 0),
+    clearDisplay(),
+    winnerDisplay.remove()
+  );
 };
 
 const computerInput = function () {
@@ -143,6 +149,7 @@ const cells = document.querySelectorAll(".cell");
 const playerScore = document.querySelector(".playerScore");
 const computerScore = document.querySelector(".computerScore");
 const winnerDisplay = document.createElement("span");
+const restartGameBtn = document.querySelector(".restartGame");
 winnerDisplay.classList.add("winnerDisplay");
 
 const display = (() => {
@@ -156,6 +163,12 @@ const display = (() => {
   });
 })();
 
+const clearDisplay = function () {
+  cells.forEach((cell) => {
+    cell.innerHTML = "";
+  });
+};
+
 const updateDisplay = () => {
   gameBoard.forEach((item, index) => {
     const div = document.getElementById(String(index));
@@ -167,6 +180,12 @@ const updateScore = () => {
   playerScore.textContent = `Player: ${player.getScore()}`;
   computerScore.textContent = `Computer: ${comp.getScore()}`;
 };
+
+restartGameBtn.addEventListener("click", () => {
+  gameReset();
+});
+
+
 
 // works but i dont want it included
 // const submitBtn = document.querySelector(".submitBtn");
