@@ -39,11 +39,11 @@ const ticTacToe = function () {
 };
 
 const comp = ticTacToe();
-const player1 = ticTacToe();
+const player = ticTacToe();
 
 const playerWon = function () {
-  if (player1.checkWinner() === true) {
-    player1.giveScore();
+  if (player.checkWinner() === true) {
+    player.giveScore();
     console.log("Player Won");
   }
 };
@@ -55,7 +55,7 @@ const computerWon = function () {
 };
 
 const tieCheck = function () {
-  if (player1.getTile().length + comp.getTile().length === 9) {
+  if (player.getTile().length + comp.getTile().length === 9) {
     return true;
   } else {
     return false;
@@ -63,7 +63,7 @@ const tieCheck = function () {
 };
 
 const gameEnd = function () {
-  if (comp.checkWinner() === true || player1.checkWinner() === true) {
+  if (comp.checkWinner() === true || player.checkWinner() === true) {
     return true;
   } else {
     return false;
@@ -71,13 +71,13 @@ const gameEnd = function () {
 };
 
 const gameReset = function () {
-  return (player1.resetState(), comp.resetState());
+  return (player.resetState(), comp.resetState());
 };
 
 const computerInput = function () {
   const randomNumber = Math.floor(Math.random() * 9) + 1;
   if (
-    !player1.getTile().includes(randomNumber) &&
+    !player.getTile().includes(randomNumber) &&
     !comp.getTile().includes(randomNumber) &&
     gameEnd() === false
   ) {
@@ -97,13 +97,13 @@ const computerInput = function () {
 
 const playerInput = function (input) {
   if (
-    !player1.getTile().includes(input) &&
+    !player.getTile().includes(input) &&
     !comp.getTile().includes(input) &&
     gameEnd() === false
   ) {
     return (
-      player1.selectTile(input),
-      console.log(player1.getTile()),
+      player.selectTile(input),
+      console.log(player.getTile()),
       playerWon()
     );
   } else if (gameEnd() === true) {
@@ -114,3 +114,4 @@ const playerInput = function (input) {
     return console.log("Tile already taken");
   }
 };
+

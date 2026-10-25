@@ -1,0 +1,10 @@
+.boardContainer {
+  width: 600px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.boardContainer > div {
+  height: 200px;
+  border: 1px solid black;
+}
