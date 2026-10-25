@@ -46,7 +46,9 @@ const computerInput = function () {
   const randomNumber = Math.floor(Math.random() * 9) + 1;
   if (
     !player1.getTile().includes(randomNumber) &&
-    !comp.getTile().includes(randomNumber)
+    !comp.getTile().includes(randomNumber) &&
+    comp.checkWinner() === false &&
+    player1.checkWinner() === false
   ) {
     return (
       comp.selectTile(randomNumber),
@@ -54,18 +56,23 @@ const computerInput = function () {
       computerWon()
     );
   } else {
-    return computerInput();
+    return computerInput(); //loops infinite till it gives an error
   }
 };
 
 const playerInput = function (input) {
-  if (!player1.getTile().includes(input) && !comp.getTile().includes(input)) {
+  if (
+    !player1.getTile().includes(input) &&
+    !comp.getTile().includes(input) &&
+    comp.checkWinner() === false &&
+    player1.checkWinner() === false
+  ) {
     return (
       player1.selectTile(input),
       console.log(player1.getTile()),
       playerWon()
     );
   } else {
-    return console.log("Tile already taken");
+    return console.log("Tile already taken or game over");
   }
 };
