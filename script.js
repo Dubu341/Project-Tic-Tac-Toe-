@@ -44,12 +44,14 @@ const player = ticTacToe();
 const playerWon = function () {
   if (player.checkWinner() === true) {
     player.giveScore();
+    updateScore();
     console.log("Player Won");
   }
 };
 const computerWon = function () {
   if (comp.checkWinner() === true) {
     comp.giveScore();
+    updateScore();
     console.log("Computer Won");
   }
 };
@@ -127,21 +129,45 @@ function Player(name, marker) {
   this.marker = marker;
 }
 
-const player1 = new Player("Player ", "X");
+let player1 = new Player("Player", "X");
 const player2 = new Player("Computer", "O");
 
 const container = document.querySelectorAll(".boardContainer div");
+const playerScore = document.querySelector(".playerScore");
+const computerScore = document.querySelector(".computerScore");
 
 const display = (() => {
   container.forEach((div) => {
     div.addEventListener("click", () => {
       if (div.textContent === "") {
         playerInput(div.id);
-        gameBoard.forEach((item, index) => {
-          const div = document.getElementById(String(index));
-          div.textContent = item;
-        });
+        updateDisplay();
       }
     });
   });
 })();
+
+const updateDisplay = () => {
+  gameBoard.forEach((item, index) => {
+    const div = document.getElementById(String(index));
+    div.textContent = item;
+  });
+};
+const updateScore = () => {
+  playerScore.textContent = `Player: ${player.getScore()}`;
+  computerScore.textContent = `Computer: ${comp.getScore()}`;
+};
+
+
+
+
+
+
+
+
+// works but i dont want it included
+// const submitBtn = document.querySelector(".submitBtn");
+// submitBtn.addEventListener("click", () => {
+//   const playerName = document.querySelector("#name").value;
+//   return (player1 = new Player(playerName, "X"));
+// });
