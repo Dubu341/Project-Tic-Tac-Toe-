@@ -27,7 +27,7 @@ body {
 .scoreBoard {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 5px;
+  gap: 50px;
   padding: 10px 10px 0px 10px;
 }
 .winnerDisplay {
@@ -44,7 +44,7 @@ body {
 }
 
 .restartGame {
-  font-family:'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: 24px;
   padding: 10px;
 }
