@@ -31,13 +31,28 @@ const ticTacToe = function () {
 const comp = ticTacToe();
 const player1 = ticTacToe();
 
+const playerWon = function () {
+  if (player1.checkWinner() === true) {
+    console.log("Player Won");
+  }
+};
+const computerWon = function () {
+  if (comp.checkWinner() === true) {
+    console.log("Computer Won");
+  }
+};
+
 const computerInput = function () {
   const randomNumber = Math.floor(Math.random() * 9) + 1;
   if (
     !player1.getTile().includes(randomNumber) &&
     !comp.getTile().includes(randomNumber)
   ) {
-    return comp.selectTile(randomNumber);
+    return (
+      comp.selectTile(randomNumber),
+      console.log(comp.getTile()),
+      computerWon()
+    );
   } else {
     return computerInput();
   }
@@ -45,6 +60,12 @@ const computerInput = function () {
 
 const playerInput = function (input) {
   if (!player1.getTile().includes(input) && !comp.getTile().includes(input)) {
-    return player1.selectTile(input);
+    return (
+      player1.selectTile(input),
+      console.log(player1.getTile()),
+      playerWon()
+    );
+  } else {
+    return console.log("Tile already taken");
   }
 };
