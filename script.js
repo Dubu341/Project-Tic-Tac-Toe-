@@ -58,7 +58,7 @@ const tieCheck = function () {
   if (player1.getTile().length + comp.getTile().length === 9) {
     return true;
   } else {
-    false;
+    return false;
   }
 };
 
