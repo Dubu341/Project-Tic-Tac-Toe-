@@ -79,7 +79,7 @@ const gameEnd = function () {
 };
 
 const gameReset = function () {
-  return (player.resetState(), comp.resetState());
+  return (player.resetState(), comp.resetState(), (gameBoard.length = 0));
 };
 
 const computerInput = function () {
@@ -137,18 +137,19 @@ function Player(name, marker) {
 
 let player1 = new Player("Player", "X");
 const player2 = new Player("Computer", "O");
+
 const layout = document.querySelector(".layout");
-const container = document.querySelectorAll(".boardContainer div");
+const cells = document.querySelectorAll(".cell");
 const playerScore = document.querySelector(".playerScore");
 const computerScore = document.querySelector(".computerScore");
 const winnerDisplay = document.createElement("span");
 winnerDisplay.classList.add("winnerDisplay");
 
 const display = (() => {
-  container.forEach((div) => {
-    div.addEventListener("click", () => {
-      if (div.textContent === "") {
-        playerInput(div.id);
+  cells.forEach((cell) => {
+    cell.addEventListener("click", () => {
+      if (cell.textContent === "") {
+        playerInput(cell.id);
         updateDisplay();
       }
     });
