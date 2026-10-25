@@ -1,14 +1,14 @@
 const ticTacToe = function () {
   const tiles = [];
   const winCondition = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
     [1, 4, 7],
     [2, 5, 8],
-    [3, 6, 9],
-    [1, 4, 8],
-    [3, 5, 7],
+    [0, 4, 8],
+    [2, 4, 6],
   ];
   let score = 0;
   return {
@@ -75,7 +75,7 @@ const gameReset = function () {
 };
 
 const computerInput = function () {
-  const randomNumber = Math.floor(Math.random() * 9) + 1;
+  const randomNumber = Math.floor(Math.random() * 9);
   if (
     !player.getTile().includes(randomNumber) &&
     !comp.getTile().includes(randomNumber) &&
@@ -84,6 +84,7 @@ const computerInput = function () {
     return (
       comp.selectTile(randomNumber),
       console.log(comp.getTile()),
+      (gameBoard[randomNumber] = player2.marker),
       computerWon()
     );
   } else if (gameEnd() === true) {
@@ -104,6 +105,7 @@ const playerInput = function (input) {
     return (
       player.selectTile(input),
       console.log(player.getTile()),
+      (gameBoard[input] = player1.marker),
       playerWon()
     );
   } else if (gameEnd() === true) {
@@ -115,3 +117,14 @@ const playerInput = function (input) {
   }
 };
 
+let gameBoard = [];
+function Player(name, marker) {
+  if (!new.target) {
+    throw Error("user new");
+  }
+  this.name = name;
+  this.marker = marker;
+}
+
+const player1 = new Player("Player ", "X");
+const player2 = new Player("Computer", "O");
