@@ -46,6 +46,8 @@ const playerWon = function () {
     player.giveScore();
     updateScore();
     console.log("Player Won");
+    layout.appendChild(winnerDisplay);
+    winnerDisplay.textContent = "YOU WON!";
   }
 };
 const computerWon = function () {
@@ -53,11 +55,15 @@ const computerWon = function () {
     comp.giveScore();
     updateScore();
     console.log("Computer Won");
+    layout.appendChild(winnerDisplay);
+    winnerDisplay.textContent = "YOU LOST!";
   }
 };
 
 const tieCheck = function () {
   if (player.getTile().length + comp.getTile().length === 9) {
+    winnerDisplay.textContent = "TIE!";
+    layout.appendChild(winnerDisplay);
     return true;
   } else {
     return false;
@@ -131,10 +137,12 @@ function Player(name, marker) {
 
 let player1 = new Player("Player", "X");
 const player2 = new Player("Computer", "O");
-
+const layout = document.querySelector(".layout");
 const container = document.querySelectorAll(".boardContainer div");
 const playerScore = document.querySelector(".playerScore");
 const computerScore = document.querySelector(".computerScore");
+const winnerDisplay = document.createElement("span");
+winnerDisplay.classList.add("winnerDisplay");
 
 const display = (() => {
   container.forEach((div) => {
@@ -153,17 +161,11 @@ const updateDisplay = () => {
     div.textContent = item;
   });
 };
+
 const updateScore = () => {
   playerScore.textContent = `Player: ${player.getScore()}`;
   computerScore.textContent = `Computer: ${comp.getScore()}`;
 };
-
-
-
-
-
-
-
 
 // works but i dont want it included
 // const submitBtn = document.querySelector(".submitBtn");
