@@ -1,10 +1,15 @@
+* {
+  margin: 0;
+}
 .boardContainer {
-  width: 600px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 100px);
 }
 
 .boardContainer > div {
-  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
   border: 1px solid black;
 }

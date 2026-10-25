@@ -98,15 +98,16 @@ const computerInput = function () {
 
 const playerInput = function (input) {
   if (
-    !player.getTile().includes(input) &&
-    !comp.getTile().includes(input) &&
+    !player.getTile().includes(+input) && //+ to turn id string to number
+    !comp.getTile().includes(+input) &&
     gameEnd() === false
   ) {
     return (
-      player.selectTile(input),
+      player.selectTile(+input),
       console.log(player.getTile()),
-      (gameBoard[input] = player1.marker),
-      playerWon()
+      (gameBoard[+input] = player1.marker),
+      playerWon(),
+      computerInput()
     );
   } else if (gameEnd() === true) {
     console.log("game ended");
@@ -128,3 +129,19 @@ function Player(name, marker) {
 
 const player1 = new Player("Player ", "X");
 const player2 = new Player("Computer", "O");
+
+const container = document.querySelectorAll(".boardContainer div");
+
+const display = (() => {
+  container.forEach((div) => {
+    div.addEventListener("click", () => {
+      if (div.textContent === "") {
+        playerInput(div.id);
+        gameBoard.forEach((item, index) => {
+          const div = document.getElementById(String(index));
+          div.textContent = item;
+        });
+      }
+    });
+  });
+})();
