@@ -10,6 +10,7 @@ const ticTacToe = function () {
     [1, 4, 8],
     [3, 5, 7],
   ];
+  let score = 0;
   return {
     selectTile(tile) {
       if (typeof tile === "number" && !tiles.includes(tile)) {
@@ -28,6 +29,12 @@ const ticTacToe = function () {
     resetState() {
       return (tiles.length = 0);
     },
+    getScore() {
+      return score;
+    },
+    giveScore() {
+      score++;
+    },
   };
 };
 
@@ -36,11 +43,13 @@ const player1 = ticTacToe();
 
 const playerWon = function () {
   if (player1.checkWinner() === true) {
+    player1.giveScore();
     console.log("Player Won");
   }
 };
 const computerWon = function () {
   if (comp.checkWinner() === true) {
+    comp.giveScore();
     console.log("Computer Won");
   }
 };
