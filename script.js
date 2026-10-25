@@ -54,6 +54,14 @@ const computerWon = function () {
   }
 };
 
+const tieCheck = function () {
+  if (player1.getTile().length + comp.getTile().length === 9) {
+    return true;
+  } else {
+    false;
+  }
+};
+
 const gameEnd = function () {
   if (comp.checkWinner() === true || player1.checkWinner() === true) {
     return true;
@@ -80,6 +88,8 @@ const computerInput = function () {
     );
   } else if (gameEnd() === true) {
     console.log("game ended");
+  } else if (tieCheck() === true) {
+    console.log("Tie!");
   } else {
     return computerInput();
   }
@@ -98,6 +108,8 @@ const playerInput = function (input) {
     );
   } else if (gameEnd() === true) {
     console.log("game ended");
+  } else if (tieCheck() === true) {
+    console.log("Tie!");
   } else {
     return console.log("Tile already taken");
   }
