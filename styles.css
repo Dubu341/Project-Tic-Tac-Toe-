@@ -1,6 +1,9 @@
 * {
   margin: 0;
 }
+body {
+  font-family: "Courier New", Courier, monospace;
+}
 .layout {
   margin: 0 auto;
   position: relative;
@@ -19,6 +22,7 @@
   justify-content: center;
   height: 100px;
   border: 1px solid black;
+  font-size: 24px;
 }
 .scoreBoard {
   display: grid;
@@ -27,6 +31,8 @@
   padding: 10px 10px 0px 10px;
 }
 .winnerDisplay {
+  font-size: 34px;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,5 +40,11 @@
   height: 100px;
   position: absolute;
   top: 125px;
-  background-color: rgb(0 0 0 / 50%);
+  background-color: rgb(0 0 0 / 75%);
+}
+
+.restartGame {
+  font-family:'Courier New', Courier, monospace;
+  font-size: 24px;
+  padding: 10px;
 }
